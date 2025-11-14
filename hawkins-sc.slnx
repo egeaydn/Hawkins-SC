@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Hawkins SC/Hawkins-SC Entitys.csproj" />
+  <Project Path="Hawkins-SC Bussines/Hawkins-SC Bussines.csproj" Id="a080a6a3-5c72-4527-8adb-0b146280c480" />
+  <Project Path="Hawkins-SC DataAccess/Hawkins-SC DataAccess.csproj" Id="255d3874-9e62-4260-83b5-3ec0d4729e07" />
+  <Project Path="Hawkins-SC WebUI/Hawkins-SC WebUI.csproj" Id="cd9caf42-434a-406e-839a-d5c3b0573068" />
+</Solution>
