@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hawkins_SC.Enums
 {
-	internal enum GradeType
+	public enum GradeType
 	{
 		Midterm = 1,       // Vize
 		Final = 2,         // Final

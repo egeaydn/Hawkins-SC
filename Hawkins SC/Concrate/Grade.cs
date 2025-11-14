@@ -5,7 +5,7 @@ using Hawkins_SC.Abstract;
 
 namespace Hawkins_SC.Concrate
 {
-	internal class Grade : BaseEntity<Guid>
+	public class Grade : BaseEntity<Guid>
 	{
 		public Guid EnrollmentId { get; set; }     // FK -> Enrollment
 		public decimal GradeValue { get; set; }    // 0-100 arası not

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hawkins_SC.Abstract
 {
-	internal interface IAuditableEntity
+	public interface IAuditableEntity
 	{
 		string? CreatedBy { get; set; }
 		string? ModifiedBy { get; set; }

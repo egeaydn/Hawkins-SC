@@ -5,7 +5,7 @@ using Hawkins_SC.Abstract;
 
 namespace Hawkins_SC.Concrate
 {
-	internal class Class : BaseEntity<Guid>
+	public class Class : BaseEntity<Guid>
 	{
 		public Guid CourseId { get; set; }         // Burası Kurs id sinin foreign keyi -> Course
 		public Guid? TeacherId { get; set; }       // Burası Öğretmenler id sinin foreign keyi -> Teacher (nullable, henüz atanmamış olabilir)

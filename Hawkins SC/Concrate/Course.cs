@@ -5,7 +5,7 @@ using Hawkins_SC.Abstract;
 
 namespace Hawkins_SC.Concrate
 {
-	internal class Course: BaseEntity<Guid>
+	public class Course : BaseEntity<Guid>
 	{
 		public string Title { get; set; }
 		public string CourseCode { get; set; }

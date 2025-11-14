@@ -7,7 +7,7 @@ using Hawkins_SC.Abstract;
 
 namespace Hawkins_SC.Concrate
 {
-	internal class Teacher : BaseEntity<Guid>, IAuditableEntity
+	public class Teacher : BaseEntity<Guid>, IAuditableEntity
 	{
 		public string IdentityUserId { get; set; }  // burası Foreign Key olacak -> AspNetUsers
 		public string FirstName { get; set; }

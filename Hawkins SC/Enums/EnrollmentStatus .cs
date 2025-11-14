@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hawkins_SC.Enums
 {
-	internal enum EnrollmentStatus
+	public enum EnrollmentStatus
 	{
 		Enrolled = 1,      // Aktif kayıtlı
 		Completed = 2,     // Tamamladı
