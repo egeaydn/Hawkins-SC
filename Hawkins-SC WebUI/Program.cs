@@ -1,4 +1,6 @@
 using Hawkins_SC_WebUI.Data;
+using Hawkins.DataAccess.Context;
+using Hawkins_SC.Concrate;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,8 +12,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-	.AddEntityFrameworkStores<ApplicationDbContext>();
+// HawkinsDbContext'i kaydet
+builder.Services.AddDbContext<HawkinsDbContext>(options =>
+	options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+	.AddEntityFrameworkStores<HawkinsDbContext>()
+	.AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

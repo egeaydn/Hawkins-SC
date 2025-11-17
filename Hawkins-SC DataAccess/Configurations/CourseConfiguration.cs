@@ -13,7 +13,7 @@ namespace Hawkins_SC_DataAccess.Configurations
 		{
 			builder.ToTable("Course");
 
-			builder.HasKey(c => c.id);
+			builder.HasKey(c => c.Id);
 
 			builder.Property(c => c.CourseCode)
 				.IsRequired()

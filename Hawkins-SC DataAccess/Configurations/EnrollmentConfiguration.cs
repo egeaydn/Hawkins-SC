@@ -13,7 +13,7 @@ namespace Hawkins_SC_DataAccess.Configurations
 		{
 			builder.ToTable("Enrollments");
 
-			builder.HasKey(e => e.id);
+			builder.HasKey(e => e.Id);
 
 			builder.Property(e => e.EnrollDate)
 				.IsRequired()

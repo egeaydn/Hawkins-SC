@@ -13,7 +13,7 @@ namespace Hawkins_SC_DataAccess.Configurations
 			builder.ToTable("Teachers");
 
 			// Primary Key
-			builder.HasKey(t => t.id);
+			builder.HasKey(t => t.Id);
 
 			// Properties
 			builder.Property(t => t.FirstName)

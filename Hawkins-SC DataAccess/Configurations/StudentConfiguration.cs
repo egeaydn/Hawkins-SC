@@ -15,7 +15,7 @@ namespace Hawkins_SC_DataAccess.Configurations
 			builder.ToTable("Students");
 
 			// Primary Key tanımlaması
-			builder.HasKey(s => s.id);
+			builder.HasKey(s => s.Id);
 
 			// Propertiler
 			builder.Property(s => s.FirstName)

@@ -13,7 +13,7 @@ namespace Hawkins_SC_DataAccess.Configurations
 		{
 			builder.ToTable("Grades");
 
-			builder.HasKey(g => g.id);
+			builder.HasKey(g => g.Id);
 
 			// Decimal precision for grades (0.00 - 100.00)
 			builder.Property(g => g.GradeValue)
@@ -46,10 +46,13 @@ namespace Hawkins_SC_DataAccess.Configurations
 				.OnDelete(DeleteBehavior.Cascade);
 
 			// Foreign Key - Teacher (nullable)
+			// NO ACTION kullanıyoruz çünkü SQL Server multiple cascade paths hatası veriyor
+			// AspNetUsers -> Students -> Enrollments -> Grades (CASCADE) ve
+			// AspNetUsers -> Teachers -> Grades (SET NULL) path'leri çakışıyor
 			builder.HasOne(g => g.GivenByTeacher)
 				.WithMany(t => t.GivenGrades)
 				.HasForeignKey(g => g.GivenByTeacherId)
-				.OnDelete(DeleteBehavior.SetNull);
+				.OnDelete(DeleteBehavior.NoAction);
 		}
 	}
 }

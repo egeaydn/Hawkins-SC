@@ -16,4 +16,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hawkins-SC DataAccess\Hawkins-SC DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
