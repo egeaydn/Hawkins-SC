@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper;
+using FluentValidation;
 using Hawkins_SC.Concrate;
 using Hawkins_SC_Bussines.Common;
 using Hawkins_SC_Bussines.Contracts;
 using Hawkins_SC_Bussines.DTOs;
+using Hawkins_SC_DataAccess.UnitOfWork;
 
 namespace Hawkins_SC_Bussines.Services
 {

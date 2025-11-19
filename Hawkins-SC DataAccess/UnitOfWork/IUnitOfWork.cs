@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Hawkins_SC_DataAccess.Repositories.Abstract;
 
 namespace Hawkins_SC_DataAccess.UnitOfWork
 {
