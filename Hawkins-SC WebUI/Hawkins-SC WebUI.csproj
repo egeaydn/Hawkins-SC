@@ -18,6 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hawkins-SC DataAccess\Hawkins-SC DataAccess.csproj" />
+    <ProjectReference Include="..\Hawkins-SC Bussines\Hawkins-SC Bussines.csproj" />
+    <ProjectReference Include="..\Hawkins SC\Hawkins-SC Entitys.csproj" />
+    <ProjectReference Include="..\Hawkins-SC Entitys\Hawkins-SC Entitys.csproj" />
   </ItemGroup>
 
 </Project>

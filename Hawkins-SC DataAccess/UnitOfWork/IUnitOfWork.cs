@@ -17,7 +17,7 @@ namespace Hawkins_SC_DataAccess.UnitOfWork
 
 		// Save / Transaction yönetimi
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-		int SaveChanges(); // isteğe bağlı, sen tercih edebilirsin
+		int SaveChanges(); // isteğe bağlı, sen tercih ettik
 
 		Task BeginTransactionAsync();
 		Task CommitTransactionAsync();

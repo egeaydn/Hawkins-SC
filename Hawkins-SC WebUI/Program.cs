@@ -1,53 +1,78 @@
-using Hawkins_SC_WebUI.Data;
 using Hawkins.DataAccess.Context;
 using Hawkins_SC.Concrate;
+using Hawkins_SC_DataAccess.UnitOfWork;
+using Hawkins_SC_WebUI.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using AutoMapper;
+using FluentValidation;
+using Hawkins_SC_Bussines.Mapping;
+using Hawkins_SC_Bussines.Validators;
+using Hawkins_SC_Bussines.Extension; // AddBusiness extension burada tanýmlýysa
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-	options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+// Configuration: connection string appsettings.json içinde "HawkinsDb" olarak tanýmlý olmalý
+var connectionString = builder.Configuration.GetConnectionString("HawkinsSC")
+					   ?? @"Server=DESKTOP-L027AII\SQLEXPRESS;Database=HawkinsSC;User Id=sa;Password=1;TrustServerCertificate=True";
 
-// HawkinsDbContext'i kaydet
+// DbContext
 builder.Services.AddDbContext<HawkinsDbContext>(options =>
-	options.UseSqlServer(connectionString));
+	options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly("Hawkins-SC DataAccess")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+// Identity (eðer kullanacaksanýz)
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 	.AddEntityFrameworkStores<HawkinsDbContext>()
 	.AddDefaultTokenProviders();
+
+// Register UnitOfWork (DataAccess içinde UnitOfWork implementasyonunuz varsa)
+builder.Services.AddScoped<IUnitOfWork, IUnitOfWork>();
+
+// Business layer registrations (extension should add services like IStudentService)
+builder.Services.AddBusiness();
+
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+// FluentValidation - tüm validator'larý tarar
+builder.Services.AddValidatorsFromAssemblyContaining<CreateStudentValidator>();
+
+// MVC + Razor
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
+// Swagger (opsiyonel, API testleri için)
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Development pipeline
 if (app.Environment.IsDevelopment())
 {
-	app.UseMigrationsEndPoint();
+	app.UseDeveloperExceptionPage();
+
 }
 else
 {
 	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapStaticAssets();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}")
-	.WithStaticAssets();
+	pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages();
 
 app.Run();
